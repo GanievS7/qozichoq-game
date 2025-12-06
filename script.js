@@ -26,9 +26,9 @@ function sendScoreToTelegram() {
 
     try {
       tg.sendData(gameData);
-      console.log("✅ Natija yuborildi:", score);
+      console.log("вњ… Natija yuborildi:", score);
     } catch (e) {
-      console.log("ℹ️ Telegram WebApp mavjud emas, lokal rejim");
+      console.log("в„№пёЏ Telegram WebApp mavjud emas, lokal rejim");
     }
   }
 }
@@ -96,7 +96,7 @@ const introductionElement = createElementStyle(
 const perfectElement = createElementStyle(
   "div",
   "position:absolute;opacity:0;transition:opacity 2s",
-  "Ikki baravar ball! 🎉"
+  "Ikki baravar ball! рџЋ‰"
 );
 const restartButton = createElementStyle(
   "button",
@@ -361,7 +361,7 @@ function animate(timestamp) {
 
 function thePlatformTheStickHits() {
   if (sticks.last().rotation != 90)
-    throw Error(`Stick is ${sticks.last().rotation}°`);
+    throw Error(`Stick is ${sticks.last().rotation}В°`);
   const stickFarX = sticks.last().x + sticks.last().length;
 
   const platformTheStickHits = platforms.find(
