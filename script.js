@@ -13,22 +13,29 @@ let clouds = [];
 const tg = window.Telegram?.WebApp;
 let gameEnded = false;
 
+// Telegram WebApp ni ishga tushirish
+if (tg) {
+  tg.ready();
+  tg.expand();
+}
+
 // O'yin tugaganda natijani Telegram'ga yuborish
 function sendScoreToTelegram() {
-  if (tg && !gameEnded) {
+  if (!gameEnded) {
     gameEnded = true;
 
-    // Natijani yuborish
-    const gameData = JSON.stringify({
-      score: score,
-      timestamp: Date.now()
-    });
+    if (tg) {
+      // Telegram MainButton ni ko'rsatish
+      tg.MainButton.text = `рџЏ† Natijani saqlash: ${score} ball`;
+      tg.MainButton.show();
 
-    try {
-      tg.sendData(gameData);
-      console.log("вњ… Natija yuborildi:", score);
-    } catch (e) {
-      console.log("в„№пёЏ Telegram WebApp mavjud emas, lokal rejim");
+      tg.MainButton.onClick(function () {
+        const gameData = JSON.stringify({
+          score: score,
+          timestamp: Date.now()
+        });
+        tg.sendData(gameData);
+      });
     }
   }
 }
